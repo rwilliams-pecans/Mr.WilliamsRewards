@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <title>Opening Giblerton NFC</title>
+
+  <script>
+    (function () {
+      var path = window.location.pathname || "";
+
+      /*
+       * Short NFC format:
+       * https://giblerton.com/n/AMYGAMCL
+       */
+      var match = path.match(/^\/n\/([A-Za-z0-9]+)\/?$/);
+
+      if (match) {
+        var token = match[1];
+
+        var appURL =
+          "https://script.google.com/a/ccs-chargers.org/macros/s/AKfycbx_V2GYF2s1HuUtsvcaCkdSEWWFMhXjGV1MjLS_8DyUbU-ZSBvSDoafl3vmP2iBL7WU8Q/exec";
+
+        window.location.replace(
+          appURL +
+          "?card=" +
+          encodeURIComponent(token)
+        );
+
+        return;
+      }
+
+      window.location.replace("https://giblerton.com/");
+    })();
+  </script>
+</head>
+
+<body>
+  <p>Opening Giblerton...</p>
+</body>
+</html>
